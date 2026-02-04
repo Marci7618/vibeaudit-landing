@@ -187,11 +187,6 @@
             font-size: 16px;
         }
 
-        .btn-secondary:hover {
-            background: var(--glass-hover);
-            border-color: var(--electric-indigo);
-        }
-
         /* Navigation */
         nav {
             position: fixed;
@@ -661,23 +656,22 @@
             margin-top: 24px;
         }
 
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 24px;
-            background: transparent;
-            border: 2px solid var(--electric-indigo);
-            color: var(--electric-indigo);
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: var(--electric-indigo);
-            color: white;
-        }
+        .sample-report-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid var(--electric-indigo);
+  color: var(--electric-indigo);
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.sample-report-btn:hover {
+  background: var(--electric-indigo);
+  color: white;
+}
 
         /* PDF Preview - Desktop shows iframe, Mobile shows placeholder */
         #pdf-preview-container iframe {
@@ -1362,56 +1356,56 @@
             line-height: 1.5;
         }
         
-        /* Toggle Switch */
-        .toggle-switch {
-            position: relative;
-            width: 44px;
-            height: 24px;
-        }
-        
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #374151;
-            border-radius: 24px;
-            transition: 0.3s;
-        }
-        
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-        
-        .toggle-switch input:checked + .toggle-slider {
-            background: var(--gradient-primary);
-        }
-        
-        .toggle-switch input:checked + .toggle-slider:before {
-            transform: translateX(20px);
-        }
-        
-        .toggle-switch input:disabled + .toggle-slider {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
+        /* Cookie Toggle Switch */
+.cookie-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+}
+
+.cookie-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cookie-toggle .toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #374151;
+  border-radius: 24px;
+  transition: 0.3s;
+}
+
+.cookie-toggle .toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.cookie-toggle input:checked + .toggle-slider {
+  background: var(--gradient-primary);
+}
+
+.cookie-toggle input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
+
+.cookie-toggle input:disabled + .toggle-slider {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
         .cookie-modal-footer {
             display: flex;
             flex-wrap: wrap;
@@ -1455,7 +1449,6 @@
                 </ul>
                 
                 <div>
-                <img src="/assets/vibeaudit-logo-new.png" alt="VibeAudit Logo">
                 <a href="https://app.vibeauditapp.com/auth" class="nav-signin">Sign In</a>
                 <a href="https://app.vibeauditapp.com/pricing#free-preview" class="btn-primary nav-cta">Try Free Preview</a>
 
@@ -1699,8 +1692,9 @@
                     </div>
                 </div>
                 <div class="sample-report-cta">
-                    <a href="/sample-report.pdf" target="_blank" class="btn-secondary" onclick="event.stopPropagation();">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <a href="/sample-report.pdf" target="_blank" class="sample-report-btn" onclick="event.stopPropagation();">
+
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         View Sample PDF
                     </a>
                 </div>
@@ -2007,28 +2001,30 @@
             <p class="cookie-modal-desc">Choose which types of cookies you want to allow. You can change these settings at any time.</p>
             
             <!-- Strictly Necessary -->
-            <div class="cookie-option">
-                <div class="cookie-option-header">
-                    <span class="cookie-option-title">
-                        Strictly Necessary Cookies
-                        <span class="always-active">Always Active</span>
-                    </span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked disabled>
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-                <p>These cookies are essential for the website to function properly. They enable core functionality such as security, authentication, and session management. These cannot be disabled.</p>
-            </div>
-            
+<div class="cookie-option">
+  <div class="cookie-option-header">
+    <span class="cookie-option-title">
+      Strictly Necessary Cookies
+      <span class="always-active">Always Active</span>
+    </span>
+
+    <label class="cookie-toggle">
+      <input type="checkbox" checked disabled>
+      <span class="toggle-slider"></span>
+    </label>
+  </div>
+
+  <p>These cookies are essential for the website to function properly. They enable core functionality such as security, authentication, and session management. These cannot be disabled.</p>
+</div>
+
             <!-- Preference Cookies -->
             <div class="cookie-option">
                 <div class="cookie-option-header">
                     <span class="cookie-option-title">Preference Cookies</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="pref-preferences">
-                        <span class="toggle-slider"></span>
-                    </label>
+                    <label class="cookie-toggle">
+                    <input type="checkbox" id="pref-preferences">
+                    <span class="toggle-slider"></span>
+                </label>
                 </div>
                 <p>These cookies remember your preferences and settings to personalize your experience, such as language selection and theme preferences.</p>
             </div>
@@ -2037,10 +2033,10 @@
             <div class="cookie-option">
                 <div class="cookie-option-header">
                     <span class="cookie-option-title">Analytics Cookies</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="pref-analytics">
-                        <span class="toggle-slider"></span>
-                    </label>
+                    <label class="cookie-toggle">
+                    <input type="checkbox" id="pref-analytics">
+                    <span class="toggle-slider"></span>
+                </label>
                 </div>
                 <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our service.</p>
             </div>
@@ -2049,10 +2045,10 @@
             <div class="cookie-option">
                 <div class="cookie-option-header">
                     <span class="cookie-option-title">Marketing Cookies</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="pref-marketing">
-                        <span class="toggle-slider"></span>
-                    </label>
+                    <label class="cookie-toggle">
+                    <input type="checkbox" id="pref-marketing">
+                    <span class="toggle-slider"></span>
+                 </label>
                 </div>
                 <p>These cookies are used to deliver relevant advertisements and track campaign effectiveness. They may be set by third-party advertising partners.</p>
             </div>
@@ -2123,20 +2119,25 @@
             }
         });
         
-        function loadSavedPreferences() {
-            const savedPrefs = localStorage.getItem(COOKIE_PREFS_KEY);
-            if (savedPrefs) {
-                try {
-                    const prefs = JSON.parse(savedPrefs);
-                    document.getElementById('pref-preferences').checked = prefs.preferences || false;
-                    document.getElementById('pref-analytics').checked = prefs.analytics || false;
-                    document.getElementById('pref-marketing').checked = prefs.marketing || false;
-                } catch (e) {
-                    console.error('Failed to load cookie preferences:', e);
-                }
-            }
-        }
-        
+       function loadSavedPreferences() {
+  const savedPrefs = localStorage.getItem(COOKIE_PREFS_KEY);
+  if (!savedPrefs) return;
+
+  try {
+    const prefs = JSON.parse(savedPrefs);
+
+    const prefEl = document.getElementById('pref-preferences');
+    const analEl = document.getElementById('pref-analytics');
+    const markEl = document.getElementById('pref-marketing');
+
+    if (prefEl) prefEl.checked = !!prefs.preferences;
+    if (analEl) analEl.checked = !!prefs.analytics;
+    if (markEl) markEl.checked = !!prefs.marketing;
+  } catch (e) {
+    console.error('Failed to load cookie preferences:', e);
+  }
+}
+
         function savePreferences(prefs) {
             localStorage.setItem(COOKIE_CONSENT_KEY, 'true');
             localStorage.setItem(COOKIE_PREFS_KEY, JSON.stringify(prefs));
