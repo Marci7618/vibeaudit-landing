@@ -969,6 +969,97 @@
             color: var(--emerald);
         }
 
+        /* Social proof — early user feedback (not certified case studies) */
+        .social-proof-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.04) 40%, transparent 100%);
+            scroll-margin-top: 96px;
+        }
+
+        .social-proof-section .section-header {
+            margin-bottom: 40px;
+        }
+
+        .social-proof-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .social-proof-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .social-proof-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .social-proof-card {
+            padding: 22px 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .social-proof-card blockquote {
+            margin: 0 0 20px 0;
+            padding: 0;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .social-proof-footer {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .social-proof-avatar {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #e0e7ff;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.35) 0%, rgba(79, 70, 229, 0.45) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .social-proof-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .social-proof-role {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .social-proof-microcopy {
+            max-width: 720px;
+            margin: 40px auto 0;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
         /* Sample Report Showcase */
         .sample-report-section {
             padding: 80px 0;
@@ -1910,6 +2001,93 @@
                     <p style="margin-top:12px;font-size:14px;color:var(--emerald);">✓ Client-ready PDF</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Social proof: early user feedback -->
+    <section class="social-proof-section" id="social-proof" aria-labelledby="social-proof-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="social-proof-heading">Built for people who sell website improvements</h2>
+                <p>VibeAudit helps small teams turn UX and CRO observations into client-ready reports, sales conversations, and clear next steps.</p>
+            </div>
+
+            <div class="social-proof-grid">
+                <article class="social-proof-card glass-card">
+                    <blockquote>
+                        &ldquo;VibeAudit helps me turn scattered UX observations into a structured report clients can actually understand. It makes the sales conversation much easier.&rdquo;
+                    </blockquote>
+                    <div class="social-proof-footer">
+                        <div class="social-proof-avatar" aria-hidden="true">MR</div>
+                        <div>
+                            <div class="social-proof-name">Michael R.</div>
+                            <div class="social-proof-role">CRO Freelancer</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="social-proof-card glass-card">
+                    <blockquote>
+                        &ldquo;The visual evidence is what makes the difference. Clients don&rsquo;t just read recommendations &mdash; they see where the buying journey creates hesitation.&rdquo;
+                    </blockquote>
+                    <div class="social-proof-footer">
+                        <div class="social-proof-avatar" aria-hidden="true">EM</div>
+                        <div>
+                            <div class="social-proof-name">Elena M.</div>
+                            <div class="social-proof-role">Shopify Consultant</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="social-proof-card glass-card">
+                    <blockquote>
+                        &ldquo;We use VibeAudit during proposal work to show prospects where conversion friction is happening before discussing a redesign or optimization retainer.&rdquo;
+                    </blockquote>
+                    <div class="social-proof-footer">
+                        <div class="social-proof-avatar" aria-hidden="true">DL</div>
+                        <div>
+                            <div class="social-proof-name">David L.</div>
+                            <div class="social-proof-role">Small Agency Owner</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="social-proof-card glass-card">
+                    <blockquote>
+                        &ldquo;It gives me a more strategic way to talk about websites. Instead of saying &lsquo;this design feels off&rsquo;, I can explain the decision friction behind it.&rdquo;
+                    </blockquote>
+                    <div class="social-proof-footer">
+                        <div class="social-proof-avatar" aria-hidden="true">SK</div>
+                        <div>
+                            <div class="social-proof-name">Sarah K.</div>
+                            <div class="social-proof-role">Web Designer</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="social-proof-card glass-card">
+                    <blockquote>
+                        &ldquo;The white-label reports help us look more prepared without spending hours building audits from scratch.&rdquo;
+                    </blockquote>
+                    <div class="social-proof-footer">
+                        <div class="social-proof-avatar" aria-hidden="true">MB</div>
+                        <div>
+                            <div class="social-proof-name">Marco B.</div>
+                            <div class="social-proof-role">Digital Consultant</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="social-proof-card glass-card">
+                    <blockquote>
+                        &ldquo;I liked that the audit focused on clarity, trust, and next-step friction instead of only technical scores.&rdquo;
+                    </blockquote>
+                    <div class="social-proof-footer">
+                        <div class="social-proof-avatar" aria-hidden="true">NP</div>
+                        <div>
+                            <div class="social-proof-name">Nina P.</div>
+                            <div class="social-proof-role">SaaS Founder</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <p class="social-proof-microcopy">Early user feedback from agencies, freelancers, and operators using VibeAudit to support website audits and optimization conversations.</p>
         </div>
     </section>
 
