@@ -5,19 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VibeAudit — AI UX &amp; CRO Audit Reports for Agencies</title>
     <meta name="description" content="Generate client-ready UX and CRO audit reports from any live website URL. Find revenue leaks, prioritize fixes, and deliver professional reports in minutes.">
-    
+    <link rel="canonical" href="https://vibeauditapp.com/">
+
     <meta property="og:title" content="VibeAudit — AI UX &amp; CRO Audit Reports for Agencies">
     <meta property="og:description" content="Generate client-ready UX and CRO audit reports from any live website URL. Find revenue leaks, prioritize fixes, and deliver professional reports in minutes.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.vibeauditapp.com">
-    <meta property="og:image" content="https://www.vibeauditapp.com/assets/og-image.png">
+    <meta property="og:site_name" content="VibeAudit">
+    <meta property="og:url" content="https://vibeauditapp.com/">
+    <!-- Social image: using logo until a dedicated 1200×630 og-image asset is added at /assets/og-image.png -->
+    <meta property="og:image" content="https://vibeauditapp.com/assets/vibeaudit-logo-new.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="VibeAudit — AI UX &amp; CRO Audit Reports for Agencies">
     <meta name="twitter:description" content="Generate client-ready UX and CRO audit reports from any live website URL. Find revenue leaks, prioritize fixes, and deliver professional reports in minutes.">
-    <meta name="twitter:image" content="https://www.vibeauditapp.com/assets/og-image.png">
+    <meta name="twitter:image" content="https://vibeauditapp.com/assets/vibeaudit-logo-new.png">
 
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "VibeAudit",
+      "url": "https://vibeauditapp.com",
+      "logo": "https://vibeauditapp.com/assets/vibeaudit-logo-new.png"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "VibeAudit",
+      "alternateName": "VibeAudit App",
+      "url": "https://vibeauditapp.com"
+    }
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,7 +62,10 @@
     }
     </script>
 
-    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -1884,7 +1910,7 @@
         <div class="container">
             <div class="nav-content">
                 <a href="/" class="nav-logo">
-                <img src="/assets/vibeaudit-logo-new.png" alt="VibeAudit Logo">
+                <img src="/assets/vibeaudit-logo-light-transparent.png" alt="VibeAudit Logo">
                 </a>
                 
                 <ul class="nav-links">
@@ -1928,12 +1954,9 @@
                 <p class="hero-micro">Built for freelancers &amp; agencies. Client-ready reports. Secure checkout via Stripe.</p>
 
                 <div class="proof-trust-bar">
-                    <div class="proof-trust-label">Why teams use VibeAudit</div>
+                    <div class="proof-trust-label">Early access</div>
                     <div class="proof-trust-items">
-                        <span><strong>Live URL audits</strong> — any public site</span>
-                        <span><strong>Client-ready PDFs</strong> — prioritized findings</span>
-                        <span><strong>White-label</strong> — Agency plan</span>
-                        <span><strong>Fast delivery</strong> — typical run in minutes</span>
+                        <span>Built for freelancers and agencies who need faster client-ready UX and CRO audit reports.</span>
                     </div>
                 </div>
             </div>
@@ -2103,6 +2126,7 @@
                 <div class="output-intro">
                     <h2 style="font-size: clamp(24px, 4vw, 32px); margin-bottom: 12px;">A report your clients<br>will actually read.</h2>
                     <p>Not a spreadsheet. Not a slide deck. A structured PDF that speaks in outcomes — with Vibe Score, key findings, revenue framing, roadmap, and visual evidence (where your plan includes it).</p>
+                    <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted); border-left: 2px solid var(--electric-indigo); padding-left: 12px;">On the Agency plan, your logo replaces VibeAudit branding on every PDF.</p>
                 </div>
                 <div class="report-mockup glass-card">
                     <div class="report-mockup-header">Sample output — illustrative structure; your branding applies on white-label plans.</div>
@@ -2474,6 +2498,16 @@
                     <div class="faq-question">Is there a free preview?</div>
                     <div class="faq-answer">We offer a one-time free preview so you can see audit output before choosing a plan. Run one audit on a live URL, review your Vibe Score, then upgrade if it fits.</div>
                 </div>
+
+                <div class="faq-item glass-card" onclick="this.classList.toggle('open')">
+                    <div class="faq-question">How accurate are the findings?</div>
+                    <div class="faq-answer">VibeAudit combines deterministic signals like PageSpeed, structural checks, screenshot analysis, and site-type-specific UX/CRO heuristics. Findings are designed as a strong expert-grade starting point, not a substitute for a full manual conversion audit. You can review and refine the final report before sharing it.</div>
+                </div>
+
+                <div class="faq-item glass-card" onclick="this.classList.toggle('open')">
+                    <div class="faq-question">Can I customize the report before sending it to a client?</div>
+                    <div class="faq-answer">Yes. You can review findings, adjust priorities, and add your own notes before delivery. On Agency, you can also apply your own branding so the PDF feels like it came from your team.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -2503,7 +2537,7 @@
         <div class="container">
             <div class="footer-content">
                 <a href="/" class="footer-logo">
-                <img src="/assets/vibeaudit-logo-new.png" alt="VibeAudit Logo">
+                <img src="/assets/vibeaudit-logo-light-transparent.png" alt="VibeAudit Logo">
                     <span>VibeAudit</span>
                 </a>
                 
