@@ -236,18 +236,31 @@
         .nav-logo {
             display: flex;
             align-items: center;
+            gap: 10px;
             text-decoration: none;
         }
 
         .nav-logo img {
-            height: 56px;
+            height: 30px;
             width: auto;
             display: block;
         }
 
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
         @media (max-width: 768px) {
-            .nav-logo img { 
-                height: 44px; 
+            .nav-logo img {
+                height: 26px;
+            }
+
+            .nav-brand {
+                font-size: 16px;
             }
         }
 
@@ -1579,21 +1592,32 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .footer-logo img {
-            height: 45px;
-            border-radius: 8px;
-            filter: brightness(1.2) contrast(1.1);
+            height: 28px;
+            width: auto;
+            display: block;
+        }
+
+        .footer-logo span {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1;
         }
 
         @media (max-width: 767px) {
             .footer-logo img {
-                height: 40px;
+                height: 26px;
+            }
+
+            .footer-logo span {
+                font-size: 18px;
             }
         }
 
@@ -1911,6 +1935,7 @@
             <div class="nav-content">
                 <a href="/" class="nav-logo">
                 <img src="/assets/vibeaudit-logo-light-transparent.png" alt="VibeAudit Logo">
+                <span class="nav-brand">VibeAudit</span>
                 </a>
                 
                 <ul class="nav-links">
