@@ -401,145 +401,6 @@
             color: var(--text-secondary);
         }
 
-        .output-section {
-            background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.04) 50%, transparent 100%);
-        }
-
-        .output-split {
-            display: grid;
-            gap: 32px;
-            align-items: start;
-        }
-
-        @media (min-width: 900px) {
-            .output-split {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-        }
-
-        .output-intro h2 {
-            font-size: clamp(28px, 5vw, 40px);
-            margin-bottom: 12px;
-        }
-
-        .output-intro p {
-            color: var(--text-secondary);
-            font-size: 17px;
-            line-height: 1.7;
-        }
-
-        .report-mockup {
-            padding: 24px;
-            text-align: left;
-            border-radius: 16px;
-        }
-
-        .report-mockup-header {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .report-mockup-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .report-mockup-overview {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .report-mockup-score {
-            min-width: 100px;
-        }
-
-        .report-mockup-score .big {
-            font-size: 42px;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-
-        .report-mockup-score .lbl {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .report-mockup-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .report-mockup-pill {
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 8px;
-            background: rgba(99, 102, 241, 0.12);
-            color: var(--electric-indigo);
-        }
-
-        .report-finding {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--glass-border);
-            font-size: 13px;
-        }
-
-        .report-finding:last-child {
-            border-bottom: none;
-        }
-
-        .report-finding .sev {
-            display: inline-block;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-
-        .sev-crit { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-        .sev-high { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-        .sev-med { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
-
-        .report-finding h4 {
-            font-size: 14px;
-            margin-bottom: 6px;
-        }
-
-        .report-finding p {
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .report-finding .impact {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 6px;
-        }
-
-        .report-mockup-foot {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 16px;
-            font-style: italic;
-        }
-
         .who-2col-grid {
             display: grid;
             gap: 24px;
@@ -1083,11 +944,224 @@
             color: var(--text-muted);
         }
 
-        /* Sample Report Showcase */
-        .sample-report-section {
-            padding: 80px 0;
+
+        /* Inside VibeAudit — dashboard showcase */
+        .inside-dashboard-section {
+            padding: 100px 0 120px;
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 96px;
         }
 
+        .inside-dashboard-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 40% at 10% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 35% at 90% 100%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .inside-dashboard-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .inside-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 80px;
+        }
+
+        .inside-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--electric-cyan);
+            margin-bottom: 16px;
+        }
+
+        .inside-header h2 {
+            font-size: clamp(36px, 5.5vw, 52px);
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .inside-header .inside-subtitle {
+            font-size: clamp(17px, 2.2vw, 20px);
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .dash-row {
+            display: grid;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .dash-row:last-of-type {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 960px) {
+            .dash-row {
+                grid-template-columns: 1fr 1.15fr;
+                gap: 64px;
+                margin-bottom: 120px;
+            }
+            .dash-row--flip {
+                grid-template-columns: 1.15fr 1fr;
+            }
+            .dash-row--flip .dash-copy { order: 2; }
+            .dash-row--flip .dash-visual { order: 1; }
+        }
+
+        .dash-copy {
+            max-width: 440px;
+        }
+
+        .dash-row:not(.dash-row--flip) .dash-copy {
+            margin-right: auto;
+        }
+
+        .dash-row--flip .dash-copy {
+            margin-left: auto;
+        }
+
+        @media (max-width: 959px) {
+            .dash-copy { max-width: none; margin: 0; }
+        }
+
+        .dash-copy h3 {
+            font-size: clamp(24px, 3.5vw, 32px);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .dash-copy p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .dash-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dash-tags li {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .dash-visual {
+            position: relative;
+        }
+
+        .dash-glow {
+            position: absolute;
+            inset: -8% -6%;
+            background: radial-gradient(circle at 50% 45%, rgba(99, 102, 241, 0.22), transparent 68%);
+            filter: blur(32px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .dash-frame {
+            position: relative;
+            z-index: 1;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.5);
+            overflow: hidden;
+            transition: transform 0.45s ease, box-shadow 0.45s ease;
+        }
+
+        .dash-frame:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 60px rgba(99, 102, 241, 0.12);
+        }
+
+        .dash-shot {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            object-position: top center;
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .dash-dual {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .dash-dual { grid-template-columns: 1fr 1fr; }
+        }
+
+        .inside-cta-block {
+            margin-top: 100px;
+            padding-top: 72px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .inside-cta-block h3 {
+            font-size: clamp(26px, 4vw, 34px);
+            margin-bottom: 14px;
+        }
+
+        .inside-cta-block p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .dash-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .dash-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 959px) {
+            .inside-dashboard-section { padding: 80px 0 96px; }
+            .inside-header { margin-bottom: 56px; }
+            .dash-row { margin-bottom: 72px; }
+            .inside-cta-block { margin-top: 72px; padding-top: 56px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .dash-reveal { opacity: 1; transform: none; transition: none; }
+            .dash-frame:hover { transform: none; }
+        }
         /* Report showcase (cinematic — no iframe) */
         .report-showcase-section {
           padding: 100px 0 120px;
@@ -2302,61 +2376,135 @@
         </div>
     </section>
 
-    <!-- The Output (structured report mock) -->
-    <section class="sample-report-section" id="output">
+    <!-- Inside VibeAudit — dashboard showcase -->
+    <section class="inside-dashboard-section" id="inside-dashboard">
         <div class="container">
-            <div class="section-header">
-                <h2>The Output</h2>
-                <p>A report your clients will actually read — structured, executive-grade, and written in business language: revenue impact, priority, and next action.</p>
-            </div>
+            <header class="inside-header dash-reveal">
+                <p class="inside-eyebrow">Inside the platform</p>
+                <h2>Inside <span class="text-gradient">VibeAudit</span></h2>
+                <p class="inside-subtitle">Everything you need to turn audits into conversion decisions.</p>
+            </header>
 
-            <div class="output-split" style="margin-bottom: 48px;">
-                <div class="output-intro">
-                    <h2 style="font-size: clamp(24px, 4vw, 32px); margin-bottom: 12px;">A report your clients<br>will actually read.</h2>
-                    <p>Not a spreadsheet. Not a slide deck. A structured PDF that speaks in outcomes — with Vibe Score, key findings, revenue framing, roadmap, and visual evidence (where your plan includes it).</p>
-                    <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted); border-left: 2px solid var(--electric-indigo); padding-left: 12px;">On the Agency plan, your logo replaces VibeAudit branding on every PDF.</p>
+            <article class="dash-row dash-reveal">
+                <div class="dash-copy">
+                    <h3>Find what's killing your conversions — and fix it.</h3>
+                    <p>Monitor audit performance, detect recurring UX friction, and identify where conversion potential is leaking across projects.</p>
+                    <ul class="dash-tags">
+                        <li>Real-time audit overview</li>
+                        <li>Workspace analytics</li>
+                        <li>Performance tracking</li>
+                        <li>Prioritized findings</li>
+                    </ul>
                 </div>
-                <div class="report-mockup glass-card">
-                    <div class="report-mockup-header">Sample output — illustrative structure; your branding applies on white-label plans.</div>
-                    <div class="report-mockup-title">UX &amp; CRO Audit Report — Acme Store — May 2026</div>
-                    <div class="report-mockup-overview">
-                        <div class="report-mockup-score">
-                            <div class="lbl">Vibe Score</div>
-                            <div class="big">72</div>
-                            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Decision signal based on clarity, trust &amp; UX psychology</div>
-                        </div>
+                <div class="dash-visual">
+                    <div class="dash-glow" aria-hidden="true"></div>
+                    <div class="dash-frame">
+                        <img class="dash-shot" src="/assets/dashboard/dashboard-overview.webp" alt="VibeAudit dashboard overview with audit performance and workspace analytics" width="1200" height="750" loading="lazy" decoding="async">
                     </div>
-                    <div class="report-mockup-pills">
-                        <span class="report-mockup-pill">🔍 Key Findings</span>
-                        <span class="report-mockup-pill">📊 Revenue Impact</span>
-                        <span class="report-mockup-pill">🗺 30-Day Roadmap</span>
-                        <span class="report-mockup-pill">📸 Visual Evidence</span>
-                        <span class="report-mockup-pill">🤖 Consultant Verdict</span>
-                    </div>
-                    <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text-muted);">Priority Findings — 8 issues identified</div>
-                    <div class="report-finding">
-                        <span class="sev sev-crit">CRITICAL</span>
-                        <h4>No trust signals at checkout</h4>
-                        <p>The payment step lacks security badges, guarantee copy, and social proof. Users abort at point of highest intent.</p>
-                        <div class="impact">~€4.2k/mo at risk (illustrative)</div>
-                    </div>
-                    <div class="report-finding">
-                        <span class="sev sev-high">HIGH</span>
-                        <h4>CTA hierarchy broken on mobile</h4>
-                        <p>Primary CTA is below the fold on 375px viewports. Secondary actions compete visually with equal weight.</p>
-                        <div class="impact">~€2.1k/mo at risk (illustrative)</div>
-                    </div>
-                    <div class="report-finding">
-                        <span class="sev sev-med">MEDIUM</span>
-                        <h4>Value proposition absent above fold</h4>
-                        <p>Hero headline describes the product category, not the customer outcome. Many visitors leave before scrolling.</p>
-                        <div class="impact">~€1.3k/mo at risk (illustrative)</div>
-                    </div>
-                    <p style="font-size:13px;color:var(--text-secondary);margin-top:12px;">+ more findings in full report → roadmap, visual evidence, AI consultant notes</p>
-                    <p class="report-mockup-foot">Sample output — illustrative. Your brand, your logo, your colors on eligible plans.</p>
                 </div>
-            </div>
+            </article>
 
+            <article class="dash-row dash-row--flip dash-reveal">
+                <div class="dash-copy">
+                    <h3>See exactly where friction compounds.</h3>
+                    <p>Track which UX and CRO categories repeatedly damage performance across your audits — from messaging to CTA effectiveness and trust signals.</p>
+                    <ul class="dash-tags">
+                        <li>Category scoring</li>
+                        <li>Pattern detection</li>
+                        <li>UX bottlenecks</li>
+                        <li>Optimization focus</li>
+                    </ul>
+                </div>
+                <div class="dash-visual">
+                    <div class="dash-glow" aria-hidden="true"></div>
+                    <div class="dash-frame">
+                        <img class="dash-shot" src="/assets/dashboard/category-breakdown.webp" alt="UX and CRO category breakdown across audits" width="1200" height="750" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </article>
+
+            <article class="dash-row dash-reveal">
+                <div class="dash-copy">
+                    <h3>Track improvement over time.</h3>
+                    <p>VibeAudit helps teams monitor optimization progress visually across iterations — not just generate one-off reports.</p>
+                    <ul class="dash-tags">
+                        <li>Historical tracking</li>
+                        <li>Trend visualization</li>
+                        <li>Optimization momentum</li>
+                        <li>Conversion evolution</li>
+                    </ul>
+                </div>
+                <div class="dash-visual">
+                    <div class="dash-glow" aria-hidden="true"></div>
+                    <div class="dash-frame">
+                        <img class="dash-shot" src="/assets/dashboard/score-history.webp" alt="Score history and trend visualization over time" width="1200" height="750" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </article>
+
+            <article class="dash-row dash-row--flip dash-reveal">
+                <div class="dash-copy">
+                    <h3>Launch a complete CRO audit in seconds.</h3>
+                    <p>Paste any URL and generate a full UX & CRO analysis powered by AI, behavioral heuristics, and conversion benchmarking.</p>
+                    <ul class="dash-tags">
+                        <li>URL analysis</li>
+                        <li>AI evaluation</li>
+                        <li>Instant setup</li>
+                        <li>Fast audit generation</li>
+                    </ul>
+                </div>
+                <div class="dash-visual">
+                    <div class="dash-glow" aria-hidden="true"></div>
+                    <div class="dash-frame">
+                        <img class="dash-shot" src="/assets/dashboard/start-audit.webp" alt="Start a new audit by pasting a website URL" width="1200" height="750" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </article>
+
+            <article class="dash-row dash-reveal">
+                <div class="dash-copy">
+                    <h3>Turn UX problems into measurable business impact.</h3>
+                    <p>Visualize experience weaknesses, benchmark competitors, and estimate the conversion upside of improving friction points.</p>
+                    <ul class="dash-tags">
+                        <li>Experience radar</li>
+                        <li>Competitive benchmarking</li>
+                        <li>Conversion estimates</li>
+                        <li>Revenue-oriented insights</li>
+                    </ul>
+                </div>
+                <div class="dash-visual">
+                    <div class="dash-glow" aria-hidden="true"></div>
+                    <div class="dash-dual">
+                        <div class="dash-frame"><img class="dash-shot" src="/assets/dashboard/experience-radar.webp" alt="Experience radar chart benchmarking UX dimensions" width="1200" height="750" loading="lazy" decoding="async"></div>
+                        <div class="dash-frame"><img class="dash-shot" src="/assets/dashboard/estimated-impact.webp" alt="Estimated revenue impact from conversion improvements" width="1200" height="750" loading="lazy" decoding="async"></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dash-row dash-row--flip dash-reveal">
+                <div class="dash-copy">
+                    <h3>Get actionable CRO guidance — not generic AI fluff.</h3>
+                    <p>Receive prioritized recommendations explaining what is broken, why it matters, and what to improve next.</p>
+                    <ul class="dash-tags">
+                        <li>Actionable recommendations</li>
+                        <li>Business-first explanations</li>
+                        <li>Priority scoring</li>
+                        <li>Clear next steps</li>
+                    </ul>
+                </div>
+                <div class="dash-visual">
+                    <div class="dash-glow" aria-hidden="true"></div>
+                    <div class="dash-frame">
+                        <img class="dash-shot" src="/assets/dashboard/ai-coach.webp" alt="AI coach with prioritized CRO recommendations" width="1200" height="750" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </article>
+
+            <div class="inside-cta-block dash-reveal">
+                <h3>Built for teams who optimize seriously.</h3>
+                <p>From freelancers to agencies managing dozens of audits, VibeAudit helps teams turn UX analysis into real conversion decisions.</p>
+                <a href="https://app.vibeauditapp.com/dashboard" class="btn-primary">Start Your First Audit</a>
+            </div>
         </div>
     </section>
 
@@ -3081,6 +3229,25 @@
             };
             savePreferences(prefs);
         }
+
+        // Dashboard showcase — scroll reveal
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var els = document.querySelectorAll('.inside-dashboard-section .dash-reveal');
+            if (!els.length || !('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+            els.forEach(function (el) { io.observe(el); });
+        })();
     </script>
 </body>
 </html>
