@@ -67,6 +67,125 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Meta Pixel (1469879484319318) — loads only after marketing cookie consent -->
+    <script>
+    window.VibeAuditMetaPixel = (function () {
+        var PIXEL_ID = '1469879484319318';
+        var initialized = false;
+        var pageViewSent = false;
+        var lastLeadAt = 0;
+        var sdkLoading = false;
+
+        function isAllowedHost() {
+            var host = (window.location.hostname || '').toLowerCase();
+            return host === 'vibeauditapp.com' || host === 'www.vibeauditapp.com';
+        }
+
+        function loadSdk(callback) {
+            if (window.fbq) {
+                callback();
+                return;
+            }
+            if (sdkLoading) {
+                var attempts = 0;
+                var timer = window.setInterval(function () {
+                    attempts += 1;
+                    if (window.fbq || attempts > 40) {
+                        window.clearInterval(timer);
+                        callback();
+                    }
+                }, 50);
+                return;
+            }
+            sdkLoading = true;
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            callback();
+        }
+
+        function init() {
+            if (!isAllowedHost() || initialized) return;
+            loadSdk(function () {
+                if (initialized || !window.fbq) return;
+                window.fbq('init', PIXEL_ID);
+                initialized = true;
+                trackPageView();
+            });
+        }
+
+        function trackPageView() {
+            if (!initialized || !window.fbq || pageViewSent) return;
+            window.fbq('track', 'PageView');
+            pageViewSent = true;
+        }
+
+        function trackLead() {
+            if (!initialized || !window.fbq) return;
+            var now = Date.now();
+            if (now - lastLeadAt < 2000) return;
+            lastLeadAt = now;
+            window.fbq('track', 'Lead');
+        }
+
+        function isLeadCtaAnchor(anchor) {
+            if (!anchor || anchor.tagName !== 'A') return false;
+            var href = anchor.getAttribute('href');
+            if (!href || href.indexOf('app.vibeauditapp.com') === -1) return false;
+
+            var lower = href.toLowerCase();
+            if (lower.indexOf('/pricing') !== -1 && lower.indexOf('free-preview') !== -1) return true;
+            if (lower.indexOf('/dashboard/upload') !== -1) return true;
+
+            var cls = anchor.className || '';
+            var isMainCta =
+                cls.indexOf('btn-primary') !== -1 ||
+                cls.indexOf('nav-cta') !== -1 ||
+                cls.indexOf('pricing-cta') !== -1;
+            if (!isMainCta) return false;
+            if (lower.indexOf('/auth') !== -1) return false;
+            if (lower.indexOf('/dashboard') !== -1) return true;
+
+            return false;
+        }
+
+        document.addEventListener(
+            'click',
+            function (ev) {
+                if (!initialized) return;
+                var target = ev.target;
+                if (!target || !target.closest) return;
+                var anchor = target.closest('a');
+                if (!isLeadCtaAnchor(anchor)) return;
+                trackLead();
+            },
+            true
+        );
+
+        return {
+            init: init,
+            trackPageView: trackPageView,
+            trackLead: trackLead,
+            isInitialized: function () {
+                return initialized;
+            },
+        };
+    })();
+    </script>
     
     <style>
         * {
@@ -399,6 +518,145 @@
         .proof-trust-items span {
             font-size: 14px;
             color: var(--text-secondary);
+        }
+
+        .output-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.04) 50%, transparent 100%);
+        }
+
+        .output-split {
+            display: grid;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (min-width: 900px) {
+            .output-split {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        .output-intro h2 {
+            font-size: clamp(28px, 5vw, 40px);
+            margin-bottom: 12px;
+        }
+
+        .output-intro p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .report-mockup {
+            padding: 24px;
+            text-align: left;
+            border-radius: 16px;
+        }
+
+        .report-mockup-header {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .report-mockup-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .report-mockup-overview {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .report-mockup-score {
+            min-width: 100px;
+        }
+
+        .report-mockup-score .big {
+            font-size: 42px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .report-mockup-score .lbl {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .report-mockup-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .report-mockup-pill {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(99, 102, 241, 0.12);
+            color: var(--electric-indigo);
+        }
+
+        .report-finding {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--glass-border);
+            font-size: 13px;
+        }
+
+        .report-finding:last-child {
+            border-bottom: none;
+        }
+
+        .report-finding .sev {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .sev-crit { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .sev-high { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .sev-med { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
+
+        .report-finding h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .report-finding p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .report-finding .impact {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .report-mockup-foot {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            font-style: italic;
         }
 
         .who-2col-grid {
@@ -944,504 +1202,99 @@
             color: var(--text-muted);
         }
 
-
-        /* Inside VibeAudit — dashboard showcase */
-        .inside-dashboard-section {
-            padding: 100px 0 120px;
-            position: relative;
-            overflow: hidden;
-            scroll-margin-top: 96px;
+        /* Sample Report Showcase */
+        .sample-report-section {
+            padding: 80px 0;
         }
 
-        .inside-dashboard-section::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 55% 40% at 10% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 35% at 90% 100%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .inside-dashboard-section .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .inside-header {
+        .sample-report-showcase {
+            padding: 32px;
             text-align: center;
-            max-width: 760px;
-            margin: 0 auto 80px;
         }
 
-        .inside-eyebrow {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--electric-cyan);
-            margin-bottom: 16px;
-        }
-
-        .inside-header h2 {
-            font-size: clamp(36px, 5.5vw, 52px);
-            margin-bottom: 16px;
-            letter-spacing: -0.03em;
-        }
-
-        .inside-header .inside-subtitle {
-            font-size: clamp(17px, 2.2vw, 20px);
-            color: var(--text-secondary);
-            line-height: 1.65;
-            max-width: 560px;
-            margin: 0 auto;
-        }
-
-        .dash-row {
-            display: grid;
-            gap: 48px;
-            align-items: center;
-            margin-bottom: 100px;
-        }
-
-        .dash-row:last-of-type {
-            margin-bottom: 0;
-        }
-
-        @media (min-width: 960px) {
-            .dash-row {
-                grid-template-columns: 1fr 1.15fr;
-                gap: 64px;
-                margin-bottom: 120px;
-            }
-            .dash-row--flip {
-                grid-template-columns: 1.15fr 1fr;
-            }
-            .dash-row--flip .dash-copy { order: 2; }
-            .dash-row--flip .dash-visual { order: 1; }
-        }
-
-        .dash-copy {
-            max-width: 440px;
-        }
-
-        .dash-row:not(.dash-row--flip) .dash-copy {
-            margin-right: auto;
-        }
-
-        .dash-row--flip .dash-copy {
-            margin-left: auto;
-        }
-
-        @media (max-width: 959px) {
-            .dash-copy { max-width: none; margin: 0; }
-        }
-
-        .dash-copy h3 {
-            font-size: clamp(24px, 3.5vw, 32px);
-            margin-bottom: 14px;
-            letter-spacing: -0.02em;
-        }
-
-        .dash-copy p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.75;
+        .sample-report-preview {
+            position: relative;
             margin-bottom: 24px;
         }
 
-        .dash-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dash-tags li {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            padding: 8px 14px;
-            border-radius: 999px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .dash-visual {
-            position: relative;
-        }
-
-        .dash-glow {
+        .sample-report-badge {
             position: absolute;
-            inset: -8% -6%;
-            background: radial-gradient(circle at 50% 45%, rgba(99, 102, 241, 0.22), transparent 68%);
-            filter: blur(32px);
-            z-index: 0;
-            pointer-events: none;
+            top: 16px;
+            left: 16px;
+            background: var(--electric-indigo);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 10;
         }
 
-        .dash-frame {
-            position: relative;
-            z-index: 1;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(15, 23, 42, 0.5);
-            overflow: hidden;
-            transition: transform 0.45s ease, box-shadow 0.45s ease;
+        .sample-report-cta {
+            margin-top: 24px;
         }
 
-        .dash-frame:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 60px rgba(99, 102, 241, 0.12);
-        }
+        .sample-report-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid var(--electric-indigo);
+  color: var(--electric-indigo);
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.sample-report-btn:hover {
+  background: var(--electric-indigo);
+  color: white;
+}
 
-        .dash-shot {
-            display: block;
+        /* PDF Preview - Desktop shows iframe, Mobile shows placeholder */
+        #pdf-preview-container iframe {
             width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-            object-position: top center;
-            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            height: 600px;
+            border: none;
+            border-radius: 8px;
         }
 
-        .dash-dual {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            gap: 16px;
-        }
-
-        @media (min-width: 640px) {
-            .dash-dual { grid-template-columns: 1fr 1fr; }
-        }
-
-        .inside-cta-block {
-            margin-top: 100px;
-            padding-top: 72px;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-            max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .inside-cta-block h3 {
-            font-size: clamp(26px, 4vw, 34px);
-            margin-bottom: 14px;
-        }
-
-        .inside-cta-block p {
-            font-size: 17px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 28px;
-        }
-
-        .dash-reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .dash-reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 959px) {
-            .inside-dashboard-section { padding: 80px 0 96px; }
-            .inside-header { margin-bottom: 56px; }
-            .dash-row { margin-bottom: 72px; }
-            .inside-cta-block { margin-top: 72px; padding-top: 56px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .dash-reveal { opacity: 1; transform: none; transition: none; }
-            .dash-frame:hover { transform: none; }
-        }
-        /* Report showcase (cinematic — no iframe) */
-        .report-showcase-section {
-          padding: 100px 0 120px;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .report-showcase-section::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(ellipse 70% 50% at 15% 20%, rgba(99, 102, 241, 0.14) 0%, transparent 55%),
-            radial-gradient(ellipse 60% 45% at 85% 75%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
-          pointer-events: none;
-        }
-
-        .rs-callouts {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 10px;
-          margin-bottom: 56px;
-        }
-
-        .rs-callout {
-          font-size: 13px;
-          font-weight: 500;
-          color: var(--text-secondary);
-          padding: 10px 18px;
-          border-radius: 999px;
-          border: 1px solid var(--glass-border);
-          background: rgba(255, 255, 255, 0.04);
-          backdrop-filter: blur(8px);
-        }
-
-        .rs-callout strong { color: var(--text-primary); font-weight: 600; }
-
-        .rs-moment {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 40px;
-          align-items: center;
-          margin-bottom: 72px;
-          position: relative;
-        }
-
-        @media (min-width: 900px) {
-          .rs-moment {
-            grid-template-columns: 1fr 1.05fr;
-            gap: 56px;
-            margin-bottom: 96px;
-          }
-          .rs-moment--flip .rs-story { order: 2; }
-          .rs-moment--flip .rs-visual { order: 1; }
-        }
-
-        .rs-story { position: relative; z-index: 2; }
-
-        .rs-index {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--electric-cyan);
-          margin-bottom: 12px;
-        }
-
-        .rs-story h3 {
-          font-size: clamp(22px, 3.5vw, 28px);
-          margin-bottom: 14px;
-        }
-
-        .rs-story p {
-          font-size: 16px;
-          color: var(--text-secondary);
-          line-height: 1.75;
-          max-width: 420px;
-        }
-
-        .rs-micro {
-          margin-top: 20px;
-          padding-left: 14px;
-          border-left: 2px solid var(--electric-indigo);
-          font-size: 14px;
-          color: var(--text-primary);
-          font-weight: 500;
-        }
-
-        .rs-visual {
-          position: relative;
-          perspective: 1200px;
-        }
-
-        .rs-glow {
-          position: absolute;
-          inset: -12% -8%;
-          background: radial-gradient(circle at 50% 40%, rgba(99, 102, 241, 0.22), transparent 65%);
-          filter: blur(28px);
-          z-index: 0;
-          pointer-events: none;
-        }
-
-        .rm {
-          position: relative;
-          z-index: 1;
-          background: #fff;
-          color: #0f172a;
-          border-radius: 12px;
-          padding: 18px 20px;
-          box-shadow:
-            0 0 0 1px rgba(255, 255, 255, 0.06),
-            0 24px 48px rgba(0, 0, 0, 0.45),
-            0 0 80px rgba(99, 102, 241, 0.12);
-          transform: rotate(-1.2deg);
-          font-size: 11px;
-          line-height: 1.45;
-        }
-
-        .rs-moment--flip .rm { transform: rotate(1deg); }
-
-        .rm-eyebrow {
-          font-size: 9px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: #64748b;
-          margin-bottom: 6px;
-        }
-
-        .rm h4 {
-          font-size: 13px;
-          font-weight: 700;
-          color: #0f172a;
-          margin-bottom: 10px;
-        }
-
-        .rm-gauges {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-          margin: 10px 0;
-        }
-
-        .rm-gauge {
-          text-align: center;
-          padding: 10px 6px;
-          border-radius: 8px;
-          border: 1px solid #e2e8f0;
-        }
-
-        .rm-gauge b { display: block; font-size: 20px; }
-        .rm-gauge span { font-size: 8px; color: #64748b; text-transform: uppercase; }
-
-        .rm-split { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .rm-risk { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 8px; font-size: 10px; }
-        .rm-opp { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px; font-size: 10px; }
-
-        .rm-browser {
-          height: 120px;
-          border-radius: 8px;
-          background: linear-gradient(160deg, #e2e8f0 0%, #94a3b8 100%);
-          position: relative;
-          margin: 8px 0;
-          border: 1px solid #e2e8f0;
-        }
-
-        .rm-pin {
-          position: absolute;
-          top: 32%;
-          left: 48%;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: #dc2626;
-          border: 2px solid #fff;
-          box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.4);
-        }
-
-        .rm-annotate {
-          position: absolute;
-          bottom: 8px;
-          left: 8px;
-          right: 8px;
-          background: rgba(15, 23, 42, 0.82);
-          color: #fff;
-          font-size: 9px;
-          padding: 6px 8px;
-          border-radius: 6px;
-        }
-
-        .rm-rev { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-        .rm-rev-in { background: #f3f4f6; padding: 10px; border-radius: 8px; }
-        .rm-rev-out {
-          background: linear-gradient(135deg, #eff6ff, #dbeafe);
-          border: 2px solid #3b82f6;
-          padding: 10px;
-          border-radius: 8px;
-        }
-
-        .rm-rev-out em {
-          display: block;
-          font-style: normal;
-          font-size: 14px;
-          font-weight: 800;
-          color: #1d4ed8;
-          margin-top: 4px;
-        }
-
-        .rm-prio {
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
-          padding: 10px;
-          margin-bottom: 8px;
-        }
-
-        .rm-prio:last-child { margin-bottom: 0; }
-
-        .rm-tag {
-          display: inline-block;
-          font-size: 8px;
-          font-weight: 700;
-          color: #fff;
-          background: linear-gradient(135deg, #059669, #10b981);
-          padding: 2px 6px;
-          border-radius: 8px;
-          margin-left: 4px;
-          vertical-align: middle;
-        }
-
-        .rm-step {
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
-          padding: 8px 10px;
-          margin-bottom: 6px;
-          background: rgba(99, 102, 241, 0.04);
-        }
-
-        .rm-step:last-child { margin-bottom: 0; }
-
-        .rs-float-badge {
-          position: absolute;
-          top: -10px;
-          right: 12px;
-          z-index: 3;
-          font-size: 10px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          padding: 6px 12px;
-          border-radius: 20px;
-          background: var(--gradient-primary);
-          color: #fff;
-          box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
-        }
-
-        .rs-cta-wrap {
-          text-align: center;
-          margin-top: 24px;
-          padding-top: 48px;
-          border-top: 1px solid var(--glass-border);
-        }
-
-        .rs-cta-wrap p {
-          font-size: 17px;
-          color: var(--text-secondary);
-          margin-bottom: 24px;
-          max-width: 520px;
-          margin-left: auto;
-          margin-right: auto;
+        /* Mobile: show placeholder, desktop: hide it */
+        .sample-pdf-mobile {
+            display: none;
         }
 
         @media (max-width: 768px) {
-          .rm { transform: none; }
-          .rs-moment--flip .rm { transform: none; }
-          .rm-gauges, .rm-split, .rm-rev { grid-template-columns: 1fr; }
+            #pdf-preview-container {
+                display: none;
+            }
+            .sample-pdf-mobile {
+                display: block;
+            }
+            .sample-pdf-placeholder {
+                padding: 60px 20px;
+                background: rgba(99, 102, 241, 0.1);
+                border: 2px dashed var(--electric-indigo);
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .sample-pdf-placeholder:hover,
+            .sample-pdf-placeholder:active {
+                background: rgba(99, 102, 241, 0.2);
+            }
+            .sample-pdf-placeholder svg {
+                color: var(--electric-indigo);
+                margin-bottom: 16px;
+            }
+            .sample-pdf-placeholder p {
+                font-size: 16px;
+                color: var(--text-primary);
+                margin: 0;
+            }
         }
-
-
-
 
         /* Not Just For Agencies */
         .audience-section .audience-grid {
@@ -2165,6 +2018,7 @@
     </style>
 </head>
 <body>
+    <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1469879484319318&amp;ev=PageView&amp;noscript=1" /></noscript>
     <div class="bg-gradient"></div>
 
     <!-- Navigation -->
@@ -2376,266 +2230,95 @@
         </div>
     </section>
 
-    <!-- Inside VibeAudit — dashboard showcase -->
-    <section class="inside-dashboard-section" id="inside-dashboard">
+    <!-- Sample report + PDF preview -->
+    <section class="sample-report-section" id="sample-report">
         <div class="container">
-            <header class="inside-header dash-reveal">
-                <p class="inside-eyebrow">Inside the platform</p>
-                <h2>Inside <span class="text-gradient">VibeAudit</span></h2>
-                <p class="inside-subtitle">Everything you need to turn audits into conversion decisions.</p>
-            </header>
+            <div class="section-header">
+                <h2>The Output</h2>
+                <p>A report your clients will actually read — structured, executive-grade, and written in business language: revenue impact, priority, and next action.</p>
+            </div>
 
-            <article class="dash-row dash-reveal">
-                <div class="dash-copy">
-                    <h3>Find what's killing your conversions — and fix it.</h3>
-                    <p>Monitor audit performance, detect recurring UX friction, and identify where conversion potential is leaking across projects.</p>
-                    <ul class="dash-tags">
-                        <li>Real-time audit overview</li>
-                        <li>Workspace analytics</li>
-                        <li>Performance tracking</li>
-                        <li>Prioritized findings</li>
-                    </ul>
+            <div class="output-split" style="margin-bottom: 48px;">
+                <div class="output-intro">
+                    <h2 style="font-size: clamp(24px, 4vw, 32px); margin-bottom: 12px;">A report your clients<br>will actually read.</h2>
+                    <p>Not a spreadsheet. Not a slide deck. A structured PDF that speaks in outcomes — with Vibe Score, key findings, revenue framing, roadmap, and visual evidence (where your plan includes it).</p>
+                    <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted); border-left: 2px solid var(--electric-indigo); padding-left: 12px;">On the Agency plan, your logo replaces VibeAudit branding on every PDF.</p>
                 </div>
-                <div class="dash-visual">
-                    <div class="dash-glow" aria-hidden="true"></div>
-                    <div class="dash-frame">
-                        <img class="dash-shot" src="/assets/dashboard/dashboard-overview.webp" alt="VibeAudit dashboard overview with audit performance and workspace analytics" width="1200" height="750" loading="lazy" decoding="async">
+                <div class="report-mockup glass-card">
+                    <div class="report-mockup-header">Sample output — illustrative structure; your branding applies on white-label plans.</div>
+                    <div class="report-mockup-title">UX &amp; CRO Audit Report — Acme Store — May 2026</div>
+                    <div class="report-mockup-overview">
+                        <div class="report-mockup-score">
+                            <div class="lbl">Vibe Score</div>
+                            <div class="big">72</div>
+                            <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Decision signal based on clarity, trust &amp; UX psychology</div>
+                        </div>
+                    </div>
+                    <div class="report-mockup-pills">
+                        <span class="report-mockup-pill">🔍 Key Findings</span>
+                        <span class="report-mockup-pill">📊 Revenue Impact</span>
+                        <span class="report-mockup-pill">🗺 30-Day Roadmap</span>
+                        <span class="report-mockup-pill">📸 Visual Evidence</span>
+                        <span class="report-mockup-pill">🤖 Consultant Verdict</span>
+                    </div>
+                    <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text-muted);">Priority Findings — 8 issues identified</div>
+                    <div class="report-finding">
+                        <span class="sev sev-crit">CRITICAL</span>
+                        <h4>No trust signals at checkout</h4>
+                        <p>The payment step lacks security badges, guarantee copy, and social proof. Users abort at point of highest intent.</p>
+                        <div class="impact">~€4.2k/mo at risk (illustrative)</div>
+                    </div>
+                    <div class="report-finding">
+                        <span class="sev sev-high">HIGH</span>
+                        <h4>CTA hierarchy broken on mobile</h4>
+                        <p>Primary CTA is below the fold on 375px viewports. Secondary actions compete visually with equal weight.</p>
+                        <div class="impact">~€2.1k/mo at risk (illustrative)</div>
+                    </div>
+                    <div class="report-finding">
+                        <span class="sev sev-med">MEDIUM</span>
+                        <h4>Value proposition absent above fold</h4>
+                        <p>Hero headline describes the product category, not the customer outcome. Many visitors leave before scrolling.</p>
+                        <div class="impact">~€1.3k/mo at risk (illustrative)</div>
+                    </div>
+                    <p style="font-size:13px;color:var(--text-secondary);margin-top:12px;">+ more findings in full report → roadmap, visual evidence, AI consultant notes</p>
+                    <p class="report-mockup-foot">Sample output — illustrative. Your brand, your logo, your colors on eligible plans.</p>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 32px;">
+                <h2>See a real sample PDF</h2>
+                <p>Open the full sample report — same format many teams deliver to clients.</p>
+            </div>
+
+            <div class="sample-report-showcase glass-card">
+                <div class="sample-report-preview">
+                    <div class="sample-report-badge">Sample Report</div>
+                    <!-- PDF container - iframe injected only on desktop via JS -->
+                    <div id="pdf-preview-container"></div>
+                    <!-- Mobile: Click-to-view placeholder -->
+                    <div class="sample-pdf-mobile" id="pdf-mobile-placeholder">
+                        <div class="sample-pdf-placeholder" onclick="window.open('/sample-report.pdf', '_blank')">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <p>Tap to view Sample PDF Report</p>
+                        </div>
                     </div>
                 </div>
-            </article>
+                <div class="sample-report-cta">
+                <a href="/sample-report.pdf" target="_blank" class="sample-report-btn" onclick="event.stopPropagation();">
 
-            <article class="dash-row dash-row--flip dash-reveal">
-                <div class="dash-copy">
-                    <h3>See exactly where friction compounds.</h3>
-                    <p>Track which UX and CRO categories repeatedly damage performance across your audits — from messaging to CTA effectiveness and trust signals.</p>
-                    <ul class="dash-tags">
-                        <li>Category scoring</li>
-                        <li>Pattern detection</li>
-                        <li>UX bottlenecks</li>
-                        <li>Optimization focus</li>
-                    </ul>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        View Sample PDF
+                    </a>
                 </div>
-                <div class="dash-visual">
-                    <div class="dash-glow" aria-hidden="true"></div>
-                    <div class="dash-frame">
-                        <img class="dash-shot" src="/assets/dashboard/category-breakdown.webp" alt="UX and CRO category breakdown across audits" width="1200" height="750" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </article>
-
-            <article class="dash-row dash-reveal">
-                <div class="dash-copy">
-                    <h3>Track improvement over time.</h3>
-                    <p>VibeAudit helps teams monitor optimization progress visually across iterations — not just generate one-off reports.</p>
-                    <ul class="dash-tags">
-                        <li>Historical tracking</li>
-                        <li>Trend visualization</li>
-                        <li>Optimization momentum</li>
-                        <li>Conversion evolution</li>
-                    </ul>
-                </div>
-                <div class="dash-visual">
-                    <div class="dash-glow" aria-hidden="true"></div>
-                    <div class="dash-frame">
-                        <img class="dash-shot" src="/assets/dashboard/score-history.webp" alt="Score history and trend visualization over time" width="1200" height="750" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </article>
-
-            <article class="dash-row dash-row--flip dash-reveal">
-                <div class="dash-copy">
-                    <h3>Launch a complete CRO audit in seconds.</h3>
-                    <p>Paste any URL and generate a full UX & CRO analysis powered by AI, behavioral heuristics, and conversion benchmarking.</p>
-                    <ul class="dash-tags">
-                        <li>URL analysis</li>
-                        <li>AI evaluation</li>
-                        <li>Instant setup</li>
-                        <li>Fast audit generation</li>
-                    </ul>
-                </div>
-                <div class="dash-visual">
-                    <div class="dash-glow" aria-hidden="true"></div>
-                    <div class="dash-frame">
-                        <img class="dash-shot" src="/assets/dashboard/start-audit.webp" alt="Start a new audit by pasting a website URL" width="1200" height="750" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </article>
-
-            <article class="dash-row dash-reveal">
-                <div class="dash-copy">
-                    <h3>Turn UX problems into measurable business impact.</h3>
-                    <p>Visualize experience weaknesses, benchmark competitors, and estimate the conversion upside of improving friction points.</p>
-                    <ul class="dash-tags">
-                        <li>Experience radar</li>
-                        <li>Competitive benchmarking</li>
-                        <li>Conversion estimates</li>
-                        <li>Revenue-oriented insights</li>
-                    </ul>
-                </div>
-                <div class="dash-visual">
-                    <div class="dash-glow" aria-hidden="true"></div>
-                    <div class="dash-dual">
-                        <div class="dash-frame"><img class="dash-shot" src="/assets/dashboard/experience-radar.webp" alt="Experience radar chart benchmarking UX dimensions" width="1200" height="750" loading="lazy" decoding="async"></div>
-                        <div class="dash-frame"><img class="dash-shot" src="/assets/dashboard/estimated-impact.webp" alt="Estimated revenue impact from conversion improvements" width="1200" height="750" loading="lazy" decoding="async"></div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="dash-row dash-row--flip dash-reveal">
-                <div class="dash-copy">
-                    <h3>Get actionable CRO guidance — not generic AI fluff.</h3>
-                    <p>Receive prioritized recommendations explaining what is broken, why it matters, and what to improve next.</p>
-                    <ul class="dash-tags">
-                        <li>Actionable recommendations</li>
-                        <li>Business-first explanations</li>
-                        <li>Priority scoring</li>
-                        <li>Clear next steps</li>
-                    </ul>
-                </div>
-                <div class="dash-visual">
-                    <div class="dash-glow" aria-hidden="true"></div>
-                    <div class="dash-frame">
-                        <img class="dash-shot" src="/assets/dashboard/ai-coach.webp" alt="AI coach with prioritized CRO recommendations" width="1200" height="750" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </article>
-
-            <div class="inside-cta-block dash-reveal">
-                <h3>Built for teams who optimize seriously.</h3>
-                <p>From freelancers to agencies managing dozens of audits, VibeAudit helps teams turn UX analysis into real conversion decisions.</p>
-                <a href="https://app.vibeauditapp.com/dashboard" class="btn-primary">Start Your First Audit</a>
             </div>
         </div>
     </section>
-
-    <!-- Report showcase -->
-    <section class="report-showcase-section" id="sample-report">
-    <div class="container">
-    <div class="section-header">
-    <h2><span class="text-gradient">Enterprise-grade</span> conversion intelligence</h2>
-    <p>Client-ready deliverables built for CRO consultants and agencies — not generic AI summaries. Every section is prioritized for revenue impact.</p>
-    </div>
-
-    <div class="rs-callouts">
-    <span class="rs-callout"><strong>Prioritized revenue leaks</strong></span>
-    <span class="rs-callout"><strong>Visual evidence</strong> with actionable fixes</span>
-    <span class="rs-callout"><strong>Executive-level</strong> CRO analysis</span>
-    <span class="rs-callout"><strong>Client-ready</strong> white-label reports</span>
-    </div>
-
-    <article class="rs-moment">
-    <div class="rs-story">
-    <p class="rs-index">01 — Executive Snapshot</p>
-    <h3>Board-ready diagnosis in one view</h3>
-    <p>Scores, risks, and opportunities framed for stakeholders who need a decision — not a data dump.</p>
-    <p class="rs-micro">Executive-level CRO analysis</p>
-    </div>
-    <div class="rs-visual">
-    <span class="rs-float-badge">Snapshot</span>
-    <div class="rs-glow" aria-hidden="true"></div>
-    <div class="rm">
-    <p class="rm-eyebrow">Executive Snapshot</p>
-    <h4>Conversion health at a glance</h4>
-    <div class="rm-gauges">
-    <div class="rm-gauge" style="background:#f0fdf4;border-color:#bbf7d0"><b style="color:#16a34a">68</b><span>UX</span></div>
-    <div class="rm-gauge" style="background:#eff6ff;border-color:#bfdbfe"><b style="color:#2563eb">71</b><span>SEO</span></div>
-    <div class="rm-gauge" style="background:#fef3c7;border-color:#fde68a"><b style="color:#d97706">54</b><span>Mobile</span></div>
-    </div>
-    <div class="rm-split">
-    <div class="rm-risk"><b style="color:#991b1b">Risk</b> — CTA hierarchy competes above the fold.</div>
-    <div class="rm-opp"><b style="color:#15803d">Win</b> — Clarify outcome beside primary action.</div>
-    </div>
-    </div>
-    </div>
-    </article>
-
-    <article class="rs-moment rs-moment--flip">
-    <div class="rs-story">
-    <p class="rs-index">02 — Visual Evidence</p>
-    <h3>See the leak. Fix the moment.</h3>
-    <p>Annotated captures tie every finding to a specific screen — so teams know exactly what to change.</p>
-    <p class="rs-micro">Visual evidence with actionable fixes</p>
-    </div>
-    <div class="rs-visual">
-    <span class="rs-float-badge">Evidence</span>
-    <div class="rs-glow" aria-hidden="true"></div>
-    <div class="rm">
-    <p class="rm-eyebrow">Visual Evidence</p>
-    <h4>Hero CTA hierarchy</h4>
-    <div class="rm-browser"><span class="rm-pin"></span><span class="rm-annotate">Primary action competes with secondary offers</span></div>
-    <p style="margin:0;color:#475569">Impact: visitors hesitate at the first decision point.</p>
-    </div>
-    </div>
-    </article>
-
-    <article class="rs-moment">
-    <div class="rs-story">
-    <p class="rs-index">03 — Revenue Impact Analysis</p>
-    <h3>Model uplift with transparent assumptions</h3>
-    <p>Conservative revenue scenarios connect UX fixes to business outcomes — with inputs your CFO can trust.</p>
-    <p class="rs-micro">Prioritized revenue leaks</p>
-    </div>
-    <div class="rs-visual">
-    <span class="rs-float-badge">ROI</span>
-    <div class="rs-glow" aria-hidden="true"></div>
-    <div class="rm">
-    <p class="rm-eyebrow">Revenue Impact Analysis</p>
-    <h4>Scenario projection</h4>
-    <div class="rm-rev">
-    <div class="rm-rev-in"><b>Inputs</b><br />42k visits · 2.1% CVR · $84k/mo</div>
-    <div class="rm-rev-out"><b>Range estimate</b><br />+0.4–0.9% CVR<em>+$18k–$41k / yr</em></div>
-    </div>
-    </div>
-    </div>
-    </article>
-
-    <article class="rs-moment rs-moment--flip">
-    <div class="rs-story">
-    <p class="rs-index">04 — Priority Summary</p>
-    <h3>Critical path, not endless lists</h3>
-    <p>Issues sequenced by severity and implementation timeline — so execution starts with highest leverage.</p>
-    <p class="rs-micro">Client-ready white-label reports</p>
-    </div>
-    <div class="rs-visual">
-    <span class="rs-float-badge">Priority</span>
-    <div class="rs-glow" aria-hidden="true"></div>
-    <div class="rm">
-    <p class="rm-eyebrow">Priority Summary</p>
-    <h4>Fix order</h4>
-    <div class="rm-prio"><b>Strengthen primary CTA contrast</b><span class="rm-tag">48h</span><br /><span style="color:#64748b">Highest leverage at first decision</span></div>
-    <div class="rm-prio"><b>Move trust proof beside checkout</b><br /><span style="color:#64748b">Reduces commitment hesitation</span></div>
-    </div>
-    </div>
-    </article>
-
-    <article class="rs-moment">
-    <div class="rs-story">
-    <p class="rs-index">05 — 48H Action Pack</p>
-    <h3>Ship momentum in the first two days</h3>
-    <p>Hour-by-hour actions your team can execute immediately — before the full roadmap kicks in.</p>
-    <p class="rs-micro">Visual evidence with actionable fixes</p>
-    </div>
-    <div class="rs-visual">
-    <span class="rs-float-badge">48H</span>
-    <div class="rs-glow" aria-hidden="true"></div>
-    <div class="rm">
-    <p class="rm-eyebrow">48H Action Pack</p>
-    <h4>Immediate execution</h4>
-    <div class="rm-step"><b>0–6h:</b> One primary CTA above the fold.</div>
-    <div class="rm-step"><b>6–24h:</b> Remove one friction step at signup.</div>
-    <div class="rm-step"><b>24–48h:</b> Proof module beside commitment action.</div>
-    </div>
-    </div>
-    </article>
-
-    <div class="rs-cta-wrap">
-    <p>Generate the same caliber of report for your next client or URL — in under a minute.</p>
-    <a href="https://app.vibeauditapp.com/pricing#free-preview" class="btn-primary">Generate your own audit report</a>
-    </div>
-    </div>
-    </section>
-
-
 
     <!-- Who it's for -->
     <section class="audience-section">
@@ -3131,7 +2814,30 @@
                     banner.classList.add('visible');
                 }, 500);
             }
+
+            try {
+                var savedPrefs = localStorage.getItem(COOKIE_PREFS_KEY);
+                if (savedPrefs) {
+                    var parsed = JSON.parse(savedPrefs);
+                    if (parsed.marketing && window.VibeAuditMetaPixel) {
+                        window.VibeAuditMetaPixel.init();
+                    }
+                }
+            } catch (e) {
+                /* ignore invalid stored preferences */
+            }
             
+            // GHOST DOWNLOAD FIX: Only inject PDF iframe on desktop
+            // Mobile devices will see click-to-view placeholder instead
+            const pdfContainer = document.getElementById('pdf-preview-container');
+            const mobileBreakpoint = 768;
+            if (pdfContainer && window.innerWidth > mobileBreakpoint) {
+                const iframe = document.createElement('iframe');
+                iframe.src = '/sample-report.pdf';
+                iframe.loading = 'lazy';
+                iframe.setAttribute('title', 'Sample VibeAudit Report Preview');
+                pdfContainer.appendChild(iframe);
+            }
         });
         
        function loadSavedPreferences() {
@@ -3177,10 +2883,9 @@
             }
             
             if (prefs.marketing) {
-                console.log('Marketing cookies enabled');
-                // Example: Enable Facebook Pixel, Google Ads, etc.
-            } else {
-                console.log('Marketing cookies disabled');
+                if (window.VibeAuditMetaPixel) {
+                    window.VibeAuditMetaPixel.init();
+                }
             }
         }
         
@@ -3229,25 +2934,6 @@
             };
             savePreferences(prefs);
         }
-
-        // Dashboard showcase — scroll reveal
-        (function () {
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            var els = document.querySelectorAll('.inside-dashboard-section .dash-reveal');
-            if (!els.length || !('IntersectionObserver' in window)) {
-                els.forEach(function (el) { el.classList.add('is-visible'); });
-                return;
-            }
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-            els.forEach(function (el) { io.observe(el); });
-        })();
     </script>
 </body>
 </html>
