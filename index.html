@@ -62,11 +62,10 @@
     }
     </script>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2" />
-    <link rel="icon" type="image/png" href="/favicon.png?v=2" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=3" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=3" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Meta Pixel (1469879484319318) — loads only after marketing cookie consent -->
@@ -1130,14 +1129,14 @@
         }
 
         @media (min-width: 960px) {
-            .dash-row {
-                grid-template-columns: 0.8fr 1.35fr;
+            .inside-dashboard-section .dash-row {
+                grid-template-columns: 0.74fr 1.46fr;
                 gap: 56px;
                 margin-bottom: 120px;
                 align-items: center;
             }
-            .dash-row--flip {
-                grid-template-columns: 1.35fr 0.8fr;
+            .inside-dashboard-section .dash-row--flip {
+                grid-template-columns: 1.46fr 0.74fr;
             }
             .dash-row--flip .dash-copy { order: 2; }
             .dash-row--flip .dash-visual { order: 1; }
@@ -1259,8 +1258,11 @@
                     0 30px 90px rgba(0, 0, 0, 0.5),
                     0 0 55px rgba(56, 189, 248, 0.12);
             }
+        }
+
+        @media (min-width: 1180px) and (hover: hover) {
             .inside-dashboard-section .dash-dual .dash-frame:hover {
-                transform: scale(1.04) translateY(-4px);
+                transform: scale(1.12) translateY(-4px);
             }
         }
 
@@ -1285,9 +1287,10 @@
         @media (min-width: 1180px) {
             .inside-dashboard-section .dash-dual {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 32px;
             }
             .inside-dashboard-section .dash-dual .dash-frame {
-                transform: scale(1.04);
+                transform: scale(1.12);
                 transform-origin: center;
             }
         }
