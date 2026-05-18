@@ -1085,6 +1085,7 @@
         .inside-dashboard-section .container {
             position: relative;
             z-index: 1;
+            max-width: 1280px;
         }
 
         .inside-header {
@@ -1129,12 +1130,12 @@
 
         @media (min-width: 960px) {
             .dash-row {
-                grid-template-columns: 1fr 1.15fr;
-                gap: 64px;
+                grid-template-columns: 0.92fr 1.38fr;
+                gap: 72px;
                 margin-bottom: 120px;
             }
             .dash-row--flip {
-                grid-template-columns: 1.15fr 1fr;
+                grid-template-columns: 1.38fr 0.92fr;
             }
             .dash-row--flip .dash-copy { order: 2; }
             .dash-row--flip .dash-visual { order: 1; }
@@ -1220,18 +1221,17 @@
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
+            object-fit: contain;
             object-position: top center;
             background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
         }
 
         .dash-dual {
             display: grid;
-            gap: 16px;
+            gap: 20px;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 960px) {
             .dash-dual { grid-template-columns: 1fr 1fr; }
         }
 
@@ -2656,7 +2656,7 @@
     <section class="report-showcase-section" id="sample-report">
     <div class="container">
     <div class="section-header">
-    <h2><span class="text-gradient">Enterprise-grade</span> conversion intelligence</h2>
+    <h2><span class="text-gradient">Agency-grade</span> conversion intelligence</h2>
     <p>Client-ready deliverables built for CRO consultants and agencies — not generic AI summaries. Every section is prioritized for revenue impact.</p>
     </div>
 
@@ -2774,7 +2774,7 @@
 
     <div class="rs-cta-wrap">
     <p>Generate the same caliber of report for your next client or URL — in under a minute.</p>
-    <a href="https://app.vibeauditapp.com/pricing#free-preview" class="btn-primary">Generate your own audit report</a>
+    <a href="https://app.vibeauditapp.com/pricing#free-preview" class="btn-primary">Generate this report for your next client →</a>
     </div>
     </div>
     </section>
