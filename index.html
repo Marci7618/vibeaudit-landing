@@ -1085,7 +1085,7 @@
         .inside-dashboard-section .container {
             position: relative;
             z-index: 1;
-            max-width: 1280px;
+            max-width: 1400px;
         }
 
         .inside-header {
@@ -1130,15 +1130,24 @@
 
         @media (min-width: 960px) {
             .dash-row {
-                grid-template-columns: 0.92fr 1.38fr;
-                gap: 72px;
-                margin-bottom: 120px;
-            }
-            .dash-row--flip {
-                grid-template-columns: 1.38fr 0.92fr;
+                grid-template-columns: 1fr;
+                gap: 36px;
+                margin-bottom: 112px;
+                align-items: start;
             }
             .dash-row--flip .dash-copy { order: 2; }
             .dash-row--flip .dash-visual { order: 1; }
+            .dash-copy {
+                max-width: 56ch;
+            }
+            .dash-row:not(.dash-row--flip) .dash-copy,
+            .dash-row--flip .dash-copy {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .dash-visual {
+                width: 100%;
+            }
         }
 
         .dash-copy {
@@ -1205,11 +1214,34 @@
         .dash-frame {
             position: relative;
             z-index: 1;
+            width: 100%;
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(15, 23, 42, 0.5);
             overflow: hidden;
             transition: transform 0.45s ease, box-shadow 0.45s ease;
+        }
+
+        .inside-dashboard-section .dash-frame::after {
+            content: "";
+            position: absolute;
+            top: 1.2%;
+            right: 0.8%;
+            width: clamp(128px, 20%, 240px);
+            height: clamp(40px, 6.2%, 60px);
+            z-index: 2;
+            pointer-events: none;
+            border-radius: 10px;
+            background:
+                repeating-linear-gradient(
+                    -45deg,
+                    rgba(10, 12, 22, 0.55) 0 3px,
+                    rgba(18, 22, 38, 0.55) 3px 6px
+                ),
+                rgba(10, 12, 22, 0.78);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
         }
 
         .dash-frame:hover {
@@ -1228,11 +1260,9 @@
 
         .dash-dual {
             display: grid;
-            gap: 20px;
-        }
-
-        @media (min-width: 960px) {
-            .dash-dual { grid-template-columns: 1fr 1fr; }
+            grid-template-columns: 1fr;
+            gap: 24px;
+            width: 100%;
         }
 
         .inside-cta-block {
