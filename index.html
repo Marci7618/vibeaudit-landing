@@ -2078,6 +2078,25 @@
             padding-top: 24px;
             border-top: 1px solid var(--glass-border);
         }
+
+        .footer-trust-badge {
+            margin: 22px 0;
+            display: flex;
+            justify-content: center;
+            min-height: 44px;
+        }
+
+        .footer-trust-badge img {
+            width: min(200px, 72vw);
+            height: auto;
+            opacity: 0.74;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-trust-badge a:hover img,
+        .footer-trust-badge a:focus-visible img {
+            opacity: 1;
+        }
         
         .footer-company-info {
             max-width: 800px;
@@ -3188,6 +3207,17 @@
             
             <div class="footer-disclaimer">
                 VibeAudit provides analytical insights to support decisions. It does not implement fixes or guarantee results. Revenue projections are estimates based on user-provided data and industry assumptions.
+            </div>
+
+            <div class="footer-trust-badge">
+                <a href="https://saasbrowser.com/en/saas/1438615/vibeauditapp" target="_blank" rel="noopener">
+                    <img
+                        src="https://static-files.saasbrowser.com/saas-browser-badge-11.svg"
+                        alt="VibeAuditapp - SaaS directory"
+                        width="200"
+                        loading="lazy"
+                    />
+                </a>
             </div>
             
             <!-- Legal Company Information (Italian Law Requirement) -->
