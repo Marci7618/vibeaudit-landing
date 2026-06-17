@@ -2371,6 +2371,118 @@
             color: var(--text-muted);
             line-height: 1.6;
         }
+
+        /* PDF PREVIEW SECTION */
+        .pdf-preview-section {
+          background: #0A1628;
+          padding: 80px 24px;
+        }
+
+        .pdf-preview-inner {
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+
+        .pdf-preview-header {
+          text-align: center;
+          margin-bottom: 48px;
+        }
+
+        .pdf-preview-label {
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #22C5A0;
+          margin-bottom: 12px;
+        }
+
+        .pdf-preview-title {
+          font-size: clamp(26px, 4vw, 40px);
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1.2;
+          margin-bottom: 16px;
+        }
+
+        .pdf-preview-subtitle {
+          font-size: 17px;
+          color: rgba(255,255,255,0.65);
+          max-width: 640px;
+          margin: 0 auto 12px;
+          line-height: 1.6;
+        }
+
+        .pdf-preview-meta {
+          font-size: 13px;
+          color: rgba(255,255,255,0.35);
+          font-style: italic;
+        }
+
+        .pdf-preview-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+          margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+          .pdf-preview-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 500px) {
+          .pdf-preview-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .pdf-preview-card {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 10px;
+          overflow: hidden;
+          transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .pdf-preview-card:hover {
+          transform: translateY(-3px);
+          border-color: rgba(108,77,230,0.4);
+        }
+
+        .pdf-preview-card img {
+          width: 100%;
+          display: block;
+        }
+
+        .pdf-card-caption {
+          font-size: 12px;
+          color: rgba(255,255,255,0.45);
+          text-align: center;
+          padding: 10px 12px;
+          font-weight: 500;
+        }
+
+        .pdf-preview-cta {
+          text-align: center;
+        }
+
+        .pdf-cta-link {
+          display: inline-block;
+          background: linear-gradient(135deg, #6C4DE6, #22C5A0);
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: 600;
+          padding: 14px 32px;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: opacity 0.2s ease;
+        }
+
+        .pdf-cta-link:hover {
+          opacity: 0.88;
+        }
     </style>
 </head>
 <body>
@@ -2784,6 +2896,44 @@
     <a href="https://app.vibeauditapp.com/pricing#free-preview" class="btn-primary">Generate this report for your next client →</a>
     </div>
     </div>
+    </section>
+
+
+    <!-- PDF REPORT PREVIEW SECTION -->
+    <section class="pdf-preview-section">
+      <div class="pdf-preview-inner">
+
+        <div class="pdf-preview-header">
+          <p class="pdf-preview-label">Real report. Real site.</p>
+          <h2 class="pdf-preview-title">The diagnostic layer agencies are missing.</h2>
+          <p class="pdf-preview-subtitle">Before you touch a single channel, you need to know where the site is losing people — and why. VibeAudit gives you that answer in 3 minutes, in a format you can put in front of a client today.</p>
+          <p class="pdf-preview-meta">Grammarly.com — Agency Audit #1520 — 26 pages</p>
+        </div>
+
+        <div class="pdf-preview-grid">
+          <div class="pdf-preview-card">
+            <img src="/assets/pdf-preview-01.png" alt="Business impact analysis — VibeAudit Agency Report" loading="lazy" />
+            <p class="pdf-card-caption">Business impact analysis</p>
+          </div>
+          <div class="pdf-preview-card">
+            <img src="/assets/pdf-preview-02.png" alt="Executive snapshot with priority actions — VibeAudit Agency Report" loading="lazy" />
+            <p class="pdf-card-caption">Executive snapshot</p>
+          </div>
+          <div class="pdf-preview-card">
+            <img src="/assets/pdf-preview-03.png" alt="Visual evidence with annotated screenshots — VibeAudit Agency Report" loading="lazy" />
+            <p class="pdf-card-caption">Visual evidence</p>
+          </div>
+          <div class="pdf-preview-card">
+            <img src="/assets/pdf-preview-04.png" alt="Cover page — VibeAudit Agency Report for Grammarly" loading="lazy" />
+            <p class="pdf-card-caption">Consulting-grade cover</p>
+          </div>
+        </div>
+
+        <div class="pdf-preview-cta">
+          <a href="https://app.vibeauditapp.com/pricing#free-preview" class="pdf-cta-link">Generate this report for your next client →</a>
+        </div>
+
+      </div>
     </section>
 
 
