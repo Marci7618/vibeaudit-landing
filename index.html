@@ -2421,18 +2421,12 @@
 
         .pdf-preview-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
           margin-bottom: 40px;
         }
 
-        @media (max-width: 900px) {
-          .pdf-preview-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
           .pdf-preview-grid {
             grid-template-columns: 1fr;
           }
@@ -2454,6 +2448,9 @@
         .pdf-preview-card img {
           width: 100%;
           display: block;
+          min-height: 320px;
+          object-fit: cover;
+          object-position: top;
         }
 
         .pdf-card-caption {
@@ -2916,8 +2913,8 @@
             <p class="pdf-card-caption">Business impact analysis</p>
           </div>
           <div class="pdf-preview-card">
-            <img src="/assets/pdf-preview-02.png" alt="Executive snapshot with priority actions — VibeAudit Agency Report" loading="lazy" />
-            <p class="pdf-card-caption">Executive snapshot</p>
+            <img src="/assets/pdf-preview-02.png" alt="Strategic prioritization matrix — Quick Wins vs Strategic Bets — VibeAudit Agency Report" loading="lazy" />
+            <p class="pdf-card-caption">Strategic prioritization matrix</p>
           </div>
           <div class="pdf-preview-card">
             <img src="/assets/pdf-preview-03.png" alt="Visual evidence with annotated screenshots — VibeAudit Agency Report" loading="lazy" />
