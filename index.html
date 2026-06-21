@@ -2492,6 +2492,81 @@
         .pdf-cta-link:hover {
           opacity: 0.88;
         }
+
+        .behavioral-frame {
+          padding: 80px 0;
+        }
+
+        .section-eyebrow {
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--cyan, #00C2FF);
+          margin-bottom: 12px;
+        }
+
+        .section-sub {
+          max-width: 640px;
+          margin: 16px auto 48px;
+          font-size: 18px;
+          line-height: 1.6;
+          color: var(--text-secondary, rgba(255,255,255,0.65));
+        }
+
+        .frame-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          max-width: 720px;
+          margin: 0 auto 48px;
+        }
+
+        .frame-card {
+          padding: 32px;
+          text-align: center;
+        }
+
+        .frame-card h3 {
+          font-size: 20px;
+          margin: 12px 0 8px;
+        }
+
+        .frame-card p {
+          font-size: 16px;
+          margin: 0 0 8px;
+        }
+
+        .frame-card .frame-sub {
+          font-size: 14px;
+          color: var(--text-secondary, rgba(255,255,255,0.55));
+        }
+
+        .frame-card--highlight {
+          border-color: var(--cyan, #00C2FF);
+          box-shadow: 0 0 32px rgba(0, 194, 255, 0.12);
+        }
+
+        .frame-icon {
+          font-size: 32px;
+          margin-bottom: 8px;
+        }
+
+        .frame-quote {
+          text-align: center;
+          font-size: 20px;
+          font-style: italic;
+          line-height: 1.6;
+          color: var(--text-secondary, rgba(255,255,255,0.7));
+          max-width: 560px;
+          margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+          .frame-grid {
+            grid-template-columns: 1fr;
+          }
+        }
     </style>
 </head>
 <body>
@@ -2580,6 +2655,43 @@
                 <p>VibeAudit turns a long manual process into a fast, billable deliverable on live URLs.</p>
             </div>
         </div>
+    </section>
+
+    <!-- Behavioral Frame -->
+    <section class="behavioral-frame">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">The real problem</p>
+          <h2>The problem isn't the site.<br>
+            <span class="text-gradient">It's the moment a visitor stops believing.</span>
+          </h2>
+          <p class="section-sub">
+            Heatmaps tell you where they clicked. PageSpeed tells you how fast it loaded.
+            Neither tells you what happened in the visitor's head — the exact moment
+            they went from interested to uncertain.
+          </p>
+        </div>
+
+        <div class="frame-grid">
+          <div class="frame-card glass-card">
+            <div class="frame-icon">📊</div>
+            <h3>Other tools</h3>
+            <p>Answer: <strong>"What happened?"</strong></p>
+            <p class="frame-sub">Clicks, bounces, load time. Data after the fact.</p>
+          </div>
+          <div class="frame-card glass-card frame-card--highlight">
+            <div class="frame-icon">🧠</div>
+            <h3>VibeAudit</h3>
+            <p>Answers: <strong>"Why did they hesitate?"</strong></p>
+            <p class="frame-sub">Behavioral diagnosis before the drop-off happens.</p>
+          </div>
+        </div>
+
+        <p class="frame-quote">
+          "Analytics tells you what happened.<br>
+          VibeAudit shows why it happened — and what to fix next."
+        </p>
+      </div>
     </section>
 
     <!-- How It Works -->
