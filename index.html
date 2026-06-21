@@ -2567,6 +2567,54 @@
             grid-template-columns: 1fr;
           }
         }
+
+        .rm-story-items {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 12px;
+        }
+
+        .rm-story-item {
+          padding: 10px 12px;
+          border-radius: 8px;
+          border-left: 3px solid transparent;
+          background: rgba(255,255,255,0.04);
+        }
+
+        .rm-story-item--high {
+          border-left-color: #f87171;
+        }
+
+        .rm-story-item--medium {
+          border-left-color: #fbbf24;
+        }
+
+        .rm-story-label {
+          font-size: 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          display: block;
+          margin-bottom: 4px;
+          color: #f87171;
+        }
+
+        .rm-story-item--medium .rm-story-label {
+          color: #fbbf24;
+        }
+
+        .rm-story-item p {
+          font-size: 13px;
+          line-height: 1.5;
+          color: rgba(255,255,255,0.8);
+          margin: 0 0 4px;
+        }
+
+        .rm-story-meta {
+          font-size: 11px;
+          color: rgba(255,255,255,0.4);
+        }
     </style>
 </head>
 <body>
@@ -3010,6 +3058,52 @@
     <div class="rm-step"><b>24–48h:</b> Proof module beside commitment action.</div>
     </div>
     </div>
+    </article>
+
+    <article class="rs-moment">
+      <div class="rs-story">
+        <p class="rs-index">06 — Conversion Story</p>
+        <h3>The moment Grammarly loses you</h3>
+        <p>A narrative audit that maps the visitor's psychological
+        journey — from first impression to the exact moment they
+        stop believing and open a new tab. Not a checklist.
+        A story your client can act on.</p>
+        <p class="rs-micro">Agency plan · Exclusive deliverable</p>
+      </div>
+      <div class="rs-visual">
+        <span class="rs-float-badge">Story</span>
+        <div class="rs-glow" aria-hidden="true"></div>
+        <div class="rm">
+          <p class="rm-eyebrow">Grammarly.com · Act 2 — Where momentum breaks</p>
+          <h4>Three moments visitors stop converting</h4>
+          <div class="rm-story-items">
+            <div class="rm-story-item rm-story-item--high">
+              <span class="rm-story-label">Immediate · High impact</span>
+              <p>'Get started for free' creates hesitation — visitors
+              can't tell if free means a trial or a real tier before
+              they click.</p>
+              <span class="rm-story-meta">Confidence: High ·
+              Metric: Hero CTA click-through rate</span>
+            </div>
+            <div class="rm-story-item rm-story-item--high">
+              <span class="rm-story-label">High · High impact</span>
+              <p>Feature section presents capabilities without anchoring
+              them to a specific user problem — scroll depth drops as
+              visitors fail to see themselves in the content.</p>
+              <span class="rm-story-meta">Confidence: Medium ·
+              Metric: Scroll depth at feature section midpoint</span>
+            </div>
+            <div class="rm-story-item rm-story-item--high">
+              <span class="rm-story-label">Immediate · High impact</span>
+              <p>Pricing reframes 'free account' as a restricted product
+              — visitors start evaluating cost before they've experienced
+              any value.</p>
+              <span class="rm-story-meta">Confidence: High ·
+              Metric: Pricing page exit rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </article>
 
     <div class="rs-cta-wrap">
